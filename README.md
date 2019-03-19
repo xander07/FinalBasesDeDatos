@@ -3,6 +3,8 @@ Proyecto final Base de Datos
 
 
 -----Tablas-------
+
+
 CREATE TABLE observador (numero_de_id NUMBER(10) PRIMARY KEY CHECK( numero_de_id>0 ), nombre VARCHAR(30) NOT NULL, fecha_nacimiento DATE NOT NULL, email VARCHAR(20) NOT NULL UNIQUE, contraseña VARCHAR(20) NOT NULL, tipo VARCHAR(10) CHECK( tipo IN ('observador', 'comprador', 'vendedor')) NOT NULL );
 
 CREATE TABLE vendedor (numero_de_identificacion NUMBER(10) PRIMARY KEY CHECK( numero_de_identificacion>0 ) REFERENCES observador, codigo_vendedor VARCHAR(11) NOT NULL UNIQUE);
