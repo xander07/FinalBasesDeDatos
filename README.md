@@ -7,16 +7,15 @@ Proyecto final Base de Datos
 
 CREATE TABLE observador (numero_de_id NUMBER(10) PRIMARY KEY CHECK( numero_de_id>0 ), nombre VARCHAR(30) NOT NULL, fecha_nacimiento DATE NOT NULL, email VARCHAR(20) NOT NULL UNIQUE, contraseña VARCHAR(20) NOT NULL, tipo VARCHAR(10) CHECK( tipo IN ('observador', 'comprador', 'vendedor')) NOT NULL );
 
-CREATE TABLE vendedor (numero_de_identificacion NUMBER(10) PRIMARY KEY CHECK( numero_de_identificacion>0 ) REFERENCES observador, codigo_vendedor VARCHAR(11) NOT NULL UNIQUE);
+CREATE TABLE vendedor (numero_de_identificacion NUMBER(10) PRIMARY KEY CHECK( numero_de_identificacion>0 ) REFERENCES observador, codigo_vendedor VARCHAR(11) NOT NULL UNIQUE); # Poner campo reputación y cuadrarlo con el resto de cosas
 
 CREATE TABLE comprador (numero_de_identificacion NUMBER(10) PRIMARY KEY CHECK( numero_de_identificacion>0 ) REFERENCES observador , codigo_comprador VARCHAR(11) NOT NULL UNIQUE);
 
 CREATE TABLE moderador (codigo_moderador VARCHAR(15) PRIMARY KEY, nombre VARCHAR(30) NOT NULL);
 
-CREATE TABLE articulo (codigo_articulo VARCHAR(10) PRIMARY KEY, nombre VARCHAR(30) NOT NULL, descripcion VARCHAR(150) NOT NULL, estado VARCHAR(15) CHECK( estado IN ('vendido', 'sin subastar', 'en subasta') NOT NULL, codigo_propietario VARCHAR(11) NOT NULL);  
-#clave foranea a subasta?#
+CREATE TABLE articulo (codigo_articulo VARCHAR(10) PRIMARY KEY, nombre VARCHAR(30) NOT NULL, descripcion VARCHAR(150) NOT NULL, estado VARCHAR(15) CHECK( estado IN ('vendido', 'sin subastar', 'en subasta') NOT NULL, codigo_propietario VARCHAR(11) NOT NULL, tipo_propietario VARCHAR(15) NOT NULL CHECK(tipo_propietario IN('vendedor','comprador')), codigo_vendedor VARCHAR(15) NOT NULL REFERENCES vendedor, codigo_subasta VARCHAR(15) REFERENCES subasta);  
 
-CREATE TABLE puja (id_puja VARCHAR(15) PRIMARY KEY, valor NUMBER(10) NOT NULL CHECK( valor>0 ), codigo_pujador VARCHAR(15) NOT NULL, codigo_subasta VARCHAR(15) NOT NULL REFERENCES subasta);
+CREATE TABLE puja (id_puja VARCHAR(15) PRIMARY KEY, valor NUMBER(10) NOT NULL CHECK( valor>0 ), codigo_pujador VARCHAR(15) NOT NULL, tipo_pujador VARCHAR(15) NOT NULL CHECK( tipo_pujador IN ('vendedor', 'comprador')), codigo_subasta VARCHAR(15) NOT NULL REFERENCES subasta);
 
 CREATE TABLE subasta (codigo_subasta VARCHAR(15) PRIMARY KEY, valor_inicial NUMBER(10) NOT NULL, puja_mas_alta VARCHAR(15) REFERENCES puja, estado VARCHAR(10) CHECK( estado IN ('abierta', 'cerrada')) NOT NULL, fecha_de_inicio DATE NOT NULL, codigo_moderador VARCHAR(15) NOT NULL REFERENCES moderador, vendedor VARCHAR(15) NOT NULL REFERENCES vendedor);
 
