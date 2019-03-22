@@ -1,0 +1,88 @@
+﻿CREATE TABLE observador (id INT PRIMARY KEY CHECK (id>0), 
+			nombre VARCHAR(30) NOT NULL, 
+			fecha_nacimiento DATE NOT NULL,
+			email VARCHAR(20) NOT NULL UNIQUE,
+			contrasena VARCHAR(20) NOT NULL, 
+			tipo VARCHAR(11) NOT NULL);
+
+ALTER TABLE observador ADD CONSTRAINT tipo_valido CHECK(tipo=observador OR tipo=vendedor OR tipo=comprador);
+
+CREATE TABLE vendedor (cVendedor INT PRIMARY KEY,
+			codVendedor VARCHAR(11) NOT NULL UNIQUE);
+
+ALTER TABLE vendedor ADD FOREIGN KEY(cVendedor) REFERENCES observador(id);
+
+CREATE TABLE comprador (cComprador INT(10) PRIMARY REFERENCES observador,
+			codComprador VARCHAR(11) NOT NULL UNIQUE);
+
+ALTER TABLE comprador ADD FOREIGN KEY(cComprador) REFERENCES observador(id);
+
+CREATE TABLE moderador (codigoModerador VARCHAR(15) PRIMARY KEY,
+			nombre VARCHAR(30) NOT NULL);
+
+CREATE TABLE articulo (codigoArticulo VARCHAR(10) PRIMARY KEY,
+			nombre VARCHAR(30) NOT NULL,
+			descripcion TEXT NOT NULL,
+			estado VARCHAR(15) NOT NULL,
+			idPropietario VARCHAR(11) NOT NULL,
+			tipoPropietario VARCHAR(15) NOT NULL,
+			codigoVendedor VARCHAR(15) NOT NULL,
+			codigoSubasta VARCHAR(15));
+
+ALTER TABLE articulo ADD CONSTRAINT tipo_prop CHECK(tipo=comprador OR tipo=vendedor);
+ALTER TABLE articulo ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(cVendedor);
+ALTER TABLE articulo ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(codigoSubasta);
+
+CREATE TABLE puja (idPuja VARCHAR(15) PRIMARY KEY,
+		   valor INT NOT NULL,
+		   codigoPujador VARCHAR(15) NOT NULL,
+		   tipoPujador VARCHAR(15) NOT NULL,
+		   codigoSubasta VARCHAR(15) NOT NULL);
+
+ALTER TABLE puja ADD CONSTRAINT tipo_pujador CHECK(tipoPujador=comprador OR tipoPujador=vendedor);
+ALTER TABLE puja ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(CodigoSubasta);
+
+CREATE TABLE subasta (codigoSubasta VARCHAR(15) PRIMARY KEY, 
+		      valorInicial INT(10) NOT NULL,
+		      pujaMasAlta VARCHAR(15),
+		      estado VARCHAR(10) NOT NULL,
+		      fechaDeInicio DATE NOT NULL,
+		      codigoModerador VARCHAR(15) NOT NULL,
+		      vendedor VARCHAR(15) NOT NULL);
+
+ALTER TABLE subasta ADD FOREIGN KEY(pujaMasAlta) REFERENCES puja(idPuja);
+ALTER TABLE subasta ADD FOREIGN KEY(codigoModerador) REFERENCES moderador(codigoModerador);
+ALTER TABLE subasta ADD FOREIGN KEY(vendedor) REFERENCES vendedor(codVendedor);
+
+CREATE TABLE visita (idVisita VARCHAR(15) PRIMARY KEY,
+		     idObservador INT NOT NULL,
+		     codigoSubasta VARCHAR(15) NOT NULL, 
+		     fecha DATE NOT NULL);
+
+ALTER TABLE visita ADD FOREIGN KEY(idObservador) REFERENCES observador(id);
+ALTER TABLE visita ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(codigoSubasta);
+
+CREATE TABLE reputacion (codigoVendedor VARCHAR(15) PRIMARY KEY,
+			 puntuacion FLOAT(2) NOT NULL,
+			 calificadaPor VARCHAR(15) NOT NULL,
+			 tipoCalificador VARCHAR(15) NOT NULL);
+
+ALTER TABLE reputacion ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(codVendedor);
+ALTER TABLE reputacion ADD CONSTRAINT calificador_valido CHECK(tipoCalificador=vendedor OR tipoCalificador=comprador);
+
+CREATE TABLE comentarioArticulo (CodComentario VARCHAR(15) PRIMARY KEY,
+				  descripcion TEXT NOT NULL,
+				  fecha DATE NOT NULL,
+				  hechoPor INT NOT NULL,
+				  articuloComentado VARCHAR(10) NOT NULL);
+
+ALTER TABLE comentarioArticulo ADD FOREIGN KEY(hechoPor) REFERENCES observador(id);
+ALTER TABLE comentarioArticulo ADD FOREIGN KEY(articuloComentado) REFERENCES articulo(codigoArticulo);
+
+CREATE TABLE comentarioReputacion (Codcomentario VARCHAR(15) PRIMARY KEY,
+				    descripcion TEXT NULL,
+				    fecha DATE NOT NULL,
+				    calificacion FLOAT(2) NOT NULL,
+				    codReputacion VARCHAR(15) NOT NULL);
+
+ALTER TABLE comentarioReputacion ADD FOREIGN KEY(codReputacion) REFERENCES reputacion(codigoVendedor);
