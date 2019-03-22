@@ -30,7 +30,7 @@ CREATE TABLE articulo (codigoArticulo VARCHAR(10) PRIMARY KEY,
 			codigoSubasta VARCHAR(15));
 
 ALTER TABLE articulo ADD CONSTRAINT tipo_prop CHECK(tipo=comprador OR tipo=vendedor);
-ALTER TABLE articulo ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(cVendedor);
+ALTER TABLE articulo ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(cVendedor) ON DELETE CASCADE;
 ALTER TABLE articulo ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(codigoSubasta);
 
 CREATE TABLE puja (idPuja VARCHAR(15) PRIMARY KEY,
