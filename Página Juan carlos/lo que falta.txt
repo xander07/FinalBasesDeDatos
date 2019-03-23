@@ -1,0 +1,4 @@
+1) Hacer la página de Poker, Casino, Apuestas deportivas,
+Descargas, Contáctenos, Regístrate y Depósitar.
+2) Hacer funcionar los botones de redes sociales.
+3) Agregar el formulario (Solo es que Juan copie y pegue)

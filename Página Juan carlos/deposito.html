@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    
+    <title>DEPOSITAR SALDO PUSH POKER</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://file.myfontastic.com/RkCWtGmXx2KTJLHJqWTNtS/icons.css" rel="stylesheet">
+</head>
+<body bgcolor ="
+Gray" background="img/banerao.png">
+   <header class="header">
+       <div class="contenedor">
+           <span class="icon-menu" id="btn-menu"></span>
+           <nav class="nav" id="nave">
+               <ul class="menu">
+                   <li class="menu__item"><a class="menu__link" href="index.html">INICIO</a></li>
+                   <li class="menu__item"><a class="menu__link" href="http://download.push.poker/z_webpatch.php?get:1190:1005">DESCARGAR</a></li>
+                   <li class="menu__item"><a class="menu__link" href="Retiros.html">RETIROS</a></li>
+                   <li class="menu__item"><a class="menu__link" href="deposito.html">DEPOSITO</a></li>
+                 
+               </ul>
+           </nav>
+       </div>
+   </header> 
+  <div class="banner">
+      <img src="img/banner.png" alt="" class="banner__img">
+      <div class="contenedor">
+          <h1 class="banner__titulo">INGRESA LOS DATOS PARA DEPOSITAR</h1>
+          <ph2 class="banner__txt">Por favor verificar que los datos sean correctos a la hora de enviar.</ph2>
+      </div>
+  </div>
+  <main class="main">
+      <div class="contenedor">
+        <div id="Layer2"></div>
+<div id="Layer3"></div>
+<p align="center" class="Estilo4"><img src="https://cursopaginaweb.com/pagoenlinea/imagenes/logo.jpg" width="452" height="147"></p>
+<p align="center">
+      <span class="Estilo3">DATOS DEL COMPRADOR</span></p>
+  <p align="center" class="Estilo3">A la cantidad que deseas pagar, sumale el 5% de comision</p>
+  <p align="center" class="Estilo3">Ejemplo si deseas pagar 100000 Escribe 105000 (sin puntos ni signos)</p>
+
+<form id="frm">
+                    
+   <div align="center">
+     <table width="383" border="1">
+       <tbody><tr>
+         <td><div align="right">Numero de Cedula:</div></td>
+         <td><input type="text" class="form-control" name="p_id_invoice" id="p_id_invoice" placeholder="# Cedula" data-toggle="tooltip" title="Ingrese el número de factura o referencia de pago" data-placement="bottom"></td>
+       </tr>
+       <tr>
+        <td><div align="right">Nombre de usuario:</div></td>
+         <td><input type="text" class="form-control" name="name_cliente" id="name_cliente" placeholder="Nombre de usuario" data-toggle="tooltip" title="Ingrese el nombre" data-placement="bottom"></td>
+       </tr>
+       <tr>
+        <td><div align="right">Numero de celular:</div></td>
+         <td><input type="text" class="form-control" name="numero_cliente" id="numero_cliente" placeholder="# celular" data-toggle="tooltip" title="Ingrese el # de celular" data-placement="bottom"></td>
+       </tr>
+       
+       <tr>
+         <td><div align="right">Moneda:</div></td>
+         <td><select class="form-control inputmargin moneda" id="p_currency_code" name="p_currency_code" data-toggle="tooltip" title="Seleccione la moneda en la cual va a realizar el pago" data-placement="bottom">
+                                <option value="COP">COP</option>
+                                <option value="USD">USD</option>
+                            </select></td>
+       </tr>
+       <tr>
+        <td><div align="right">Valor</div></td>
+        <td><input type="text" class="form-control inputmargin valorneto solonumeros" name="p_neto" id="valorneto" placeholder="0" data-toggle="tooltip" title="Ingrese el valor de la factura " data-placement="bottom"></td>
+       </tr>
+     </tbody></table>
+   </div>
+   <p align="center">
+     <input type="button" onclick="recogerDatos()" value="Pagar Ahora">
+   </p>
+</form>
+
+<script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
+<script>
+  var recogerDatos = function(){  
+
+  var handler = ePayco.checkout.configure({
+          key: '851d32acbf45369bd6de41cdd661305f',
+          test: false
+        })
+
+  var data={
+    //Parametros compra (obligatorio)
+          name: "Deposito",
+          description: "Deposito",
+          invoice: document.getElementById("p_id_invoice").value,
+          currency: document.getElementById("p_currency_code").value,
+          amount: document.getElementById("valorneto").value,
+          tax_base: "0",
+          tax: "0",
+          country: "co",
+          lang: "en",
+
+          //Onpage="false" - Standard="true"
+          external: "false",
+          //Parametros opcionales
+          name_billing: document.getElementById("name_cliente").value,
+          type_doc_billing: "cc",
+          mobilephone_billing: document.getElementById("numero_cliente").value,
+          number_doc_billing: document.getElementById("p_id_invoice").value
+  }
+  handler.open(data)
+}
+</script>
+       </div>
+     </main>
+               
+   <footer class="footer">
+       <div class="social">
+           <a href="https://www.facebook.com/pokercolombiano/" class="icon-fb"></a>
+           <a href="Contactenos.html" class="icon-wpp"></a>
+           <a href="Contactenos.html" class="icon-correo"></a>
+       </div>
+       <p class="copy">&copy;POKER ONLINE LATINOAMERICA</p>
+   </footer>
+   <script src="js/menu.js"></script>
+</body>
+</html>

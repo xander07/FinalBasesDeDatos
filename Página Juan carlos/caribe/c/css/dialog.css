@@ -1,0 +1,254 @@
+/*COLORBOX*/
+
+.dialogBottomLeft {
+    width: 15px;
+    height: 17px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/corner_bg.png) left bottom no-repeat;
+}
+
+.dialogBottomRight {
+    width: 17px;
+    height: 17px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/corner_bg.png) right bottom no-repeat;
+}
+
+.dialogMiddleLeft {
+    width: 15px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/side_y_bg.png) left top repeat-y;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.dialogMiddleLeftInner {
+    width: 15px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/side_bg.png) left top no-repeat;
+    min-height: 202px;
+}
+
+.dialogMiddleRight {
+    width: 17px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/side_y_bg.png) right top repeat-y;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.dialogMiddleRightInner {
+    width: 17px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/side_bg.png) right top no-repeat;
+    min-height: 202px;
+}
+
+.dialog_window .ui-widget-header {
+    height: 43px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/side_x_bg.png) top repeat-x;
+}
+
+.dialogBottomCenter {
+    height: 17px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/side_x_bg.png) bottom repeat-x;
+}
+
+.dialog_window .dialogMiddleCenter {
+    background: #696868;
+    color: #fff;
+}
+
+.dialog_window .dialogMiddleCenter {
+    vertical-align: top;
+}
+
+.dialog_window.ui-dialog .ui-dialog-titlebar {
+    padding: 0;
+}
+
+.dialog_window.ui-dialog .ui-widget-header {
+    border: none;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    width: auto;
+    margin: 0 17px 0 15px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dialog_window.ui-dialog .ui-corner-all {
+    border-radius: 0;
+}
+
+.dialog_window.ui-dialog {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+    z-index: 9999;
+}
+
+.dialog_window.ui-dialog .ui-dialog-buttonpane {
+    border: none;
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: absolute;
+    bottom: 18px;
+    width: 100%;
+}
+
+.dialog_window.ui-dialog .ui-widget-content {
+    max-width: 900px;
+    min-width: 300px;
+    color: #fff;
+    font-family: Tahoma,sans-serif;
+    font-size: 12px;
+    padding: 0;
+    background: none;
+    overflow: visible;
+}
+
+.dialog_window .confirm_dialog_wrapper {
+    padding: 6px 12px 40px;
+}
+
+.confirm_dialog_wrapper .password_input_block {
+    margin-top: 5px;
+}
+
+.dialog_window.ui-dialog .ui-dialog-titlebar-close {
+    width: 54px;
+    height: 24px;
+    font-size: 0;
+    text-indent: -9999px;
+    padding: 0;
+    right: 0;
+    top: 6px;
+    margin: 0;
+    background: none;
+    border: none;
+}
+
+.dialog_window:after {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 43px;
+    position: absolute;
+    top: 0;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/corner_bg.png) left top no-repeat;
+    z-index: 1000;
+}
+
+.dialog_window:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 17px;
+    height: 43px;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/corner_bg.png) right top no-repeat;
+    z-index: 1000;
+}
+
+.dialog_window.ui-dialog .ui-dialog-title:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.dialog_window.ui-dialog .ui-dialog-title, .dialog_window.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: none;
+}
+
+.dialog_window.ui-dialog .ui-icon {
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/b_close.gif) top no-repeat;
+    width: 54px;
+    height: 24px;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.ui-datepicker-trigger {
+    position: absolute;
+    top: 0;
+    right: 6px;
+    bottom: 0;
+    cursor: pointer;
+    margin: auto;
+}
+
+.cp_generate {
+    display: block;
+    /*noinspection CssUnknownTarget*/
+    background: url(/c/i/colorbox/b_generate.gif) top no-repeat;
+    width: 102px;
+    height: 23px;
+    text-indent: -9999px;
+}
+
+.cp_generate:hover{
+    background-position: bottom;
+}
+
+#changePasswordAjaxContent div.errors {
+    width: auto;
+}
+
+#changePasswordAjaxContent {
+    overflow: hidden;
+    min-height: 185px;
+}
+
+.colorbox_table_container {
+    margin: 0 10px;
+}
+
+.colorbox_table_container td {
+    height: 30px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.colorbox_table_container .field_valid_message {
+    white-space: normal;
+    min-width: 170px;
+}
+
+.colorbox_table_container .button_td {
+    text-align:right;
+    padding-top:3px;
+}
+
+.confirm_dialog_wrapper #preloader {
+    /*noinspection CssUnknownTarget*/
+    background: url("/c/i/preloader.gif") no-repeat scroll 0 0 transparent;
+    display: block;
+    margin: 13% auto;
+    height: 13px;
+    width: 150px;
+}
+
+
+.colorbox_table_container td .field_valid_message {
+    white-space: normal;
+}
+
+.confirm_dialog_wrapper .text_dialog {
+    text-align: center;
+    margin: 9% auto 0;
+}
