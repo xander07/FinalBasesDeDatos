@@ -1,3 +1,24 @@
+-------------------PUNTO 3A---------------------------
+
+1)
+SET @a = (SELECT DISTINCT idPropietario FROM articulo);
+SET @b =(SELECT cVendedor FROM vendedor WHERE cVendedor!=@a);
+SELECT * FROM observador WHERE id = @b;
+
+2)
+
+-------------> NO PUDE CON ESTA, LO QUE HAY AQUÍ ABAJO SON IDEAS SUELTAS:
+
+select id, nombre from observador where tipo = 'vendedor' 	#DA TODOS LOS VENDEDORES
+select idPropietario, count(*) as cantidad_art from articulo group by idPropietario;		#DA CUANTOS ARTICULOS TIENE CADA DUEÑO (NO DISCRIMINA VENDEDOR DE COMPRADOR)
+
+
+3)
+SELECT codigoVendedor, COUNT(*) AS cantidad_art FROM articulo GROUP BY categoria HAVING cantidad_art>1; 	#FALTA CREAR COLUMNA CATEGORIA
+
+
+
+
 -------------------PUNTO 3B---------------------------
 
 1)
@@ -6,3 +27,7 @@ FROM articulo
 WHERE codigoVendedor = X              # X es la variable que se encarga de almacenar el codido de vendedor a buscar
 
 2)
+[IMPRIMIR CATEGORIA]
+SET @aux = (SELECT categoria FROM  articulo WHERE codigoArticulo = X);	#FALTA CREAR COLUMNA CATEGORIA
+SET @aux2 = (SELECT idPropietario FROM articulo WHERE estado = @aux AND tipoPropietario = 'vendedor');
+select * from observador where id = @aux2 and tipo = 'vendedor';
