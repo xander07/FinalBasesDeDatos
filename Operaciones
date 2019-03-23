@@ -29,5 +29,5 @@ WHERE codigoVendedor = X              # X es la variable que se encarga de almac
 2)
 [IMPRIMIR CATEGORIA]
 SET @aux = (SELECT categoria FROM  articulo WHERE codigoArticulo = X);	#FALTA CREAR COLUMNA CATEGORIA
-SET @aux2 = (SELECT idPropietario FROM articulo WHERE estado = @aux AND tipoPropietario = 'vendedor');
+SET @aux2 = (SELECT idPropietario FROM articulo WHERE categoria = @aux AND tipoPropietario = 'vendedor');
 select * from observador where id = @aux2 and tipo = 'vendedor';
