@@ -1,0 +1,8 @@
+-------------------PUNTO 3B---------------------------
+
+1)
+SELECT nombre 
+FROM articulo
+WHERE codigoVendedor = X              # X es la variable que se encarga de almacenar el codido de vendedor a buscar
+
+2)
