@@ -31,3 +31,18 @@ WHERE codigoVendedor = X              # X es la variable que se encarga de almac
 SET @aux = (SELECT categoria FROM  articulo WHERE codigoArticulo = X);	#FALTA CREAR COLUMNA CATEGORIA
 SET @aux2 = (SELECT idPropietario FROM articulo WHERE categoria = @aux AND tipoPropietario = 'vendedor');
 select * from observador where id = @aux2 and tipo = 'vendedor';
+
+
+
+---------------- BORRADOS----------------------------------
+
+1)BORRAR UN VENDEDOR:
+----------> NO PUDE HACER TRABAJAR CORRECTAMENTE LAS CF
+
+
+2) BORRAR UN PRODUCTO:
+
+delete from articulo where codigoArticulo = N or nombre = X;		# Dejar N si se busca con codigoProducto o 
+										dejar X si se va a buscar por nombre.
+
+
