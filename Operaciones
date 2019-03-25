@@ -1,12 +1,15 @@
 -------------------PUNTO 3A---------------------------
 
 1)
-SET @a = (SELECT DISTINCT idPropietario FROM articulo);
-SET @b =(SELECT cVendedor FROM vendedor WHERE cVendedor!=@a);
-SELECT * FROM observador WHERE id = @b;
+SELECT cVendedor, COUNT(idPropietario) AS total FROM vendedor  
+LEFT OUTER JOIN articulo ON cVendedor=idPropietario
+GROUP BY cVendedor;
+
 
 2)
- SELECT O.id,O.nombre,R.cantidad_art FROM observador O,(SELECT idPropietario, count(*) as cantidad_art from articulo group by idPropietario having idPropietario != (select idPropietario from articulo where tipoPropietario = 'comprador')) R WHERE O.id=R.idPropietario;
+ SELECT O.id,O.nombre,R.cantidad_art FROM observador O,
+ (SELECT idPropietario, count(*) as cantidad_art from articulo group by idPropietario 
+ having idPropietario != (select idPropietario from articulo where tipoPropietario = 'comprador')) R WHERE O.id=R.idPropietario;
 
 
 3)
