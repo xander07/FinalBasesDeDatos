@@ -15,6 +15,10 @@ h1,h2,h3,h4,h5,h6{
     font-family: 'Yanone Kaffeesatz', sans-serif;
     letter-spacing: 1.5px;
 }
+label {
+	text-align: center;
+	color: white;
+}
 .contenedor{
     margin: auto;
     width: 98%;
@@ -73,6 +77,10 @@ h1,h2,h3,h4,h5,h6{
     left: 0;
 }
 
+.mostrar_t{
+    background: #fff;
+    color:white;
+}
 
 /*---------------Estilo del banner---------------*/
 
@@ -82,6 +90,12 @@ h1,h2,h3,h4,h5,h6{
     z-index: -1000;
     margin-bottom: 20px;
     text-align: center;
+}
+
+.banner__a__img {
+    margin:20px;
+    left:50%;
+    transform: translateX(165%) translateY(0%);
 }
 
 
@@ -120,10 +134,22 @@ h1,h2,h3,h4,h5,h6{
 /*-----------------Estilo del formulario------------*/
 
 .form-group {
-    background: white;
     position: relative;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+label {
+    text-align: left;
+    color:white;
+}
+input {
+    text-align: right;
 }
 
 /*----------------Estilo de footer--------------*/
@@ -309,6 +335,6 @@ h1,h2,h3,h4,h5,h6{
   .noticia__txt {
     font-size: 20px;
   }
-    
+
 }
 

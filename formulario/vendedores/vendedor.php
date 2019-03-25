@@ -7,32 +7,32 @@
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://file.myfontastic.com/RkCWtGmXx2KTJLHJqWTNtS/icons.css" rel="stylesheet">
 </head>
-<body bgcolor ="black" background="../img/fondo.png">
+<body bgcolor ="black" background="">
    <header class="header">
        <div class="contenedor">
            <span class="icon-menu" id="btn-menu"></span>
            <nav class="nav" id="nave">
                <ul class="menu">
-                   <li class="menu__item"><a class="menu__link" href="./index.html">Inicio</a></li>
-                   <li class="menu__item"><a class="menu__link" href="#">Vendedores</a></li>
-                   <li class="menu__item"><a class="menu__link" href="">Artículos</a></li>
+                   <li class="menu__item"><a class="menu__link" href="../index.html">Inicio</a></li>
+                   <li class="menu__item"><a class="menu__link" href="../vendedor.html">Vendedores</a></li>
+                   <li class="menu__item"><a class="menu__link" href="../articulo.html">Artículos</a></li>
                </ul>
            </nav>
        </div>
    </header> 
   <div class="banner">
-      <img src="img/bannerv.png" alt="" class="banner__v__img">
+      <img src="../img/bannerv.png" alt="" class="banner__v__img">
       <div class="contenedor">
           <h2 class="banner__titulo"> Bienvenido al menú de registro de vendedores</h2>
           <p class="banner__txt">Aquí podrás registrar vendedores.</p>
       </div>
   </div>
 
-  <main class="main__f">
+  <main class="main">
     <div class="formulario">
-      <form action="#" class="formulario" method="post">
+      <form action="insert_v.php" class="form-group" method="post">
         <div class="form-group">
-          <label for="id">Numero de identificacion</label>
+          <label for="id" >Numero de identificacion</label>
           <input type="text" name="id" id="id" class="form-control" required>
         </div>
         <div class="form-group">
@@ -53,7 +53,13 @@
         </div>
         <div class="form-group">
           <label for="">Pais</label>
-          <input type="text" name="pais" id="pais" class="form-control" required>
+          <select name="pais" required>
+            <option>Colombia</option>
+            <option>Argentina</option>
+            <option>Peru</option>
+            <option>Mexico</option>
+            <option>Ecuador</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="">Alcance</label>
@@ -64,8 +70,19 @@
         </div>
         <div class="form-group">
           <input type="submit" class="btn btn-primary" value="insertar">
-          <a href="personas.php" class="btn btn-success">Reiniciar</a>
+          <a href="vendedor.php" class="btn btn-success">Reiniciar</a>
         </div>
       </form>
     </div>
   </main>
+  <footer class="footer">
+       <div class="social">
+           <a href="" class="icon-fb"></a>
+           <a href="" class="icon-wpp"></a>
+           <a href="" class="icon-correo"></a>
+       </div>
+       <p class="copy">&copy;Subastas Los Primiparceros 2019 - Todos los derechos reservados</p>
+   </footer>
+   <script src="../js/menu.js"></script>
+</body>
+</html>
