@@ -1,11 +1,11 @@
-﻿CREATE TABLE observador (id INT PRIMARY KEY CHECK (id>0), 
+﻿CREATE TABLE observador (id VARCHAR(11) PRIMARY KEY, 
 			nombre VARCHAR(30) NOT NULL, 
 			fecha_nacimiento DATE NOT NULL,
 			email VARCHAR(20) NOT NULL UNIQUE,
 			contrasena VARCHAR(20) NOT NULL, 
 			tipo VARCHAR(11) NOT NULL)ENGINE = InnoDB;
 
-CREATE TABLE vendedor (cVendedor INT PRIMARY KEY,
+CREATE TABLE vendedor (cVendedor VARCHAR(11) PRIMARY KEY,
 			codVendedor VARCHAR(11) NOT NULL UNIQUE,
 			pais VARCHAR(15) NOT NULL,
 			alcance VARCHAR(15) NOT NULL)ENGINE = InnoDB;
@@ -40,28 +40,28 @@ CREATE TABLE subasta (codigoSubasta VARCHAR(15) PRIMARY KEY,
 		      fechaDeInicio DATE NOT NULL,
 		      codigoModerador VARCHAR(15) NOT NULL,
 		      productoASubastar INT NOT NULL,
-		      vendedor INT NOT NULL)ENGINE = InnoDB;
+		      vendedor VARCHAR(11) NOT NULL)ENGINE = InnoDB;
 
 CREATE TABLE visita (idVisita VARCHAR(15) PRIMARY KEY,
-		     idObservador INT NOT NULL,
+		     idObservador VARCHAR(11) NOT NULL,
 		     codigoSubasta VARCHAR(15) NOT NULL, 
 		     fecha DATE NOT NULL)ENGINE = InnoDB;
 
-CREATE TABLE reputacion (codigoVendedor INT PRIMARY KEY,
+CREATE TABLE reputacion (codigoVendedor VARCHAR(11) PRIMARY KEY,
 			 puntuacion FLOAT(2) NOT NULL)ENGINE = InnoDB;
 
 CREATE TABLE comentarioArticulo (CodComentario VARCHAR(15) PRIMARY KEY,
 				  descripcion TEXT NOT NULL,
 				  fecha DATE NOT NULL,
-				  hechoPor INT NOT NULL,
+				  hechoPor VARCHAR(11) NOT NULL,
 				  articuloComentado INT NOT NULL)ENGINE = InnoDB;
 
 CREATE TABLE comentarioReputacion (Codcomentario VARCHAR(11) PRIMARY KEY,
 				    descripcion TEXT NOT NULL,
 				    fecha DATE NOT NULL,
 				    calificacion FLOAT(2) NOT NULL,
-				    codReputacion INT NOT NULL,
-				    autor INT NOT NULL,
+				    codReputacion VARCHAR(11) NOT NULL,
+				    autor VARCHAR(11) NOT NULL,
 				    tipoAutor VARCHAR(15) NOT NULL)ENGINE = InnoDB;
 
 
@@ -73,7 +73,6 @@ ALTER TABLE comprador ADD FOREIGN KEY(cComprador) REFERENCES observador(id);
 ALTER TABLE articulo ADD CONSTRAINT tipo_prop CHECK(tipoPropietario=comprador OR tipoPropietario=vendedor);
 ALTER TABLE articulo ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(cVendedor);
 ALTER TABLE articulo ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(codigoSubasta);
-
 ALTER TABLE puja ADD CONSTRAINT tipo_pujador CHECK(tipoPujador=comprador OR tipoPujador=vendedor);
 ALTER TABLE puja ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(CodigoSubasta);
 ALTER TABLE subasta ADD FOREIGN KEY(productoASubastar) REFERENCES articulo(codigoArticulo);
@@ -84,7 +83,6 @@ ALTER TABLE subasta ADD CONSTRAINT fechaAPertura CHECK(fechaDeInicio >= (select 
 ALTER TABLE visita ADD FOREIGN KEY(idObservador) REFERENCES observador(id);
 ALTER TABLE visita ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(codigoSubasta);
 ALTER TABLE reputacion ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(cVendedor);
-
 ALTER TABLE comentarioArticulo ADD FOREIGN KEY(hechoPor) REFERENCES observador(id);
 ALTER TABLE comentarioArticulo ADD FOREIGN KEY(articuloComentado) REFERENCES articulo(codigoArticulo);
 ALTER TABLE comentarioReputacion ADD FOREIGN KEY(codReputacion) REFERENCES reputacion(codigoVendedor);
