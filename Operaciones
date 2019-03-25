@@ -33,12 +33,13 @@ select * from observador where id = @aux2 and tipo = 'vendedor';
 ---------------- BORRADOS----------------------------------
 
 1)BORRAR UN VENDEDOR:
-delete from vendedor where cVendedor=X; 	#X es la cedula del vendedor a borrar
+DELETE * FROM observador WHERE cVendedor = X; 	#X es la cedula del vendedor a borrar
+DELETE * FROM articulo WHERE idPropietario = X;
 
 
 2) BORRAR UN PRODUCTO:
 
-delete from articulo where codigoArticulo = N or nombre = X;		# Dejar N si se busca con codigoProducto o 
+DELETE FROM articulo WHERE codigoArticulo = N or nombre = X;		# Dejar N si se busca con codigoProducto o 
 										dejar X si se va a buscar por nombre.
 
 
