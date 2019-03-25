@@ -29,7 +29,7 @@ CREATE TABLE articulo (codigoArticulo INT AUTO_INCREMENT PRIMARY KEY,
 
 CREATE TABLE puja (idPuja VARCHAR(15) PRIMARY KEY,
 		   valor INT NOT NULL,
-		   codigoPujador VARCHAR(15) NOT NULL,
+		   codigoPujador INT NOT NULL,
 		   tipoPujador VARCHAR(15) NOT NULL,
 		   codigoSubasta VARCHAR(15) NOT NULL)ENGINE = InnoDB;
 
@@ -48,9 +48,7 @@ CREATE TABLE visita (idVisita VARCHAR(15) PRIMARY KEY,
 		     fecha DATE NOT NULL)ENGINE = InnoDB;
 
 CREATE TABLE reputacion (codigoVendedor INT PRIMARY KEY,
-			 puntuacion FLOAT(2) NOT NULL,
-			 calificadaPor VARCHAR(15) NOT NULL,
-			 tipoCalificador VARCHAR(15) NOT NULL)ENGINE = InnoDB;
+			 puntuacion FLOAT(2) NOT NULL)ENGINE = InnoDB;
 
 CREATE TABLE comentarioArticulo (CodComentario VARCHAR(15) PRIMARY KEY,
 				  descripcion TEXT NOT NULL,
@@ -72,24 +70,25 @@ CREATE TABLE comentarioReputacion (Codcomentario VARCHAR(11) PRIMARY KEY,
 ALTER TABLE observador ADD CONSTRAINT tipo_valido CHECK(tipo=observador OR tipo=vendedor OR tipo=comprador);
 ALTER TABLE vendedor ADD FOREIGN KEY(cVendedor) REFERENCES observador(id);
 ALTER TABLE comprador ADD FOREIGN KEY(cComprador) REFERENCES observador(id);
-ALTER TABLE articulo ADD CONSTRAINT tipo_prop CHECK(tipo=comprador OR tipo=vendedor);
-ALTER TABLE articulo ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(cVendedor) ON DELETE CASCADE;
+ALTER TABLE articulo ADD CONSTRAINT tipo_prop CHECK(tipoPropietario=comprador OR tipoPropietario=vendedor);
+ALTER TABLE articulo ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(cVendedor);
 ALTER TABLE articulo ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(codigoSubasta);
+
 ALTER TABLE puja ADD CONSTRAINT tipo_pujador CHECK(tipoPujador=comprador OR tipoPujador=vendedor);
 ALTER TABLE puja ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(CodigoSubasta);
 ALTER TABLE subasta ADD FOREIGN KEY(productoASubastar) REFERENCES articulo(codigoArticulo);
 ALTER TABLE subasta ADD FOREIGN KEY(pujaMasAlta) REFERENCES puja(idPuja);
 ALTER TABLE subasta ADD FOREIGN KEY(codigoModerador) REFERENCES moderador(codigoModerador);
 ALTER TABLE subasta ADD FOREIGN KEY(vendedor) REFERENCES vendedor(cVendedor);
+ALTER TABLE subasta ADD CONSTRAINT fechaAPertura CHECK(fechaDeInicio >= (select CURDATE()));
 ALTER TABLE visita ADD FOREIGN KEY(idObservador) REFERENCES observador(id);
 ALTER TABLE visita ADD FOREIGN KEY(codigoSubasta) REFERENCES subasta(codigoSubasta);
 ALTER TABLE reputacion ADD FOREIGN KEY(codigoVendedor) REFERENCES vendedor(cVendedor);
-ALTER TABLE reputacion ADD CONSTRAINT calificadorValido CHECK(tipoCalificador='vendedor' OR tipoCalificador='comprador');
-ALTER TABLE reputacion ADD CONSTRAINT noSiMismo CHECK(calificadaPor != codigoVendedor);
+
 ALTER TABLE comentarioArticulo ADD FOREIGN KEY(hechoPor) REFERENCES observador(id);
 ALTER TABLE comentarioArticulo ADD FOREIGN KEY(articuloComentado) REFERENCES articulo(codigoArticulo);
 ALTER TABLE comentarioReputacion ADD FOREIGN KEY(codReputacion) REFERENCES reputacion(codigoVendedor);
-ALTER TABLE comentarioReputacion ADD FOREIGN KEY(autor) REFERENCES observador(id);
+ALTER TABLE comentarioReputacion ADD CONSTRAINT noSiMismo CHECK(autor != codReputacion);
 ALTER TABLE comentarioReputacion ADD CONSTRAINT tipoAutor CHECK(tipoAutor = 'comprador' OR tipoAutor='vendedor');
 
 
