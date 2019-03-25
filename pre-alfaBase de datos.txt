@@ -24,7 +24,7 @@ CREATE TABLE articulo (codigoArticulo INT AUTO_INCREMENT PRIMARY KEY,
 			estado VARCHAR(15) NOT NULL,
 			idPropietario INT NOT NULL,
 			tipoPropietario VARCHAR(15) NOT NULL,
-			codigoVendedor INT NOT NULL,
+			codigoVendedor VARCHAR(11) NOT NULL,
 			codigoSubasta VARCHAR(15))ENGINE = InnoDB;
 
 CREATE TABLE puja (idPuja VARCHAR(15) PRIMARY KEY,
