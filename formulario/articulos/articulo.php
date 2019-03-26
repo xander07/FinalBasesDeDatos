@@ -16,6 +16,8 @@
                    <li class="menu__item"><a class="menu__link" href="../index.html">Inicio</a></li>
                    <li class="menu__item"><a class="menu__link" href="../vendedor.html">Vendedores</a></li>
                    <li class="menu__item"><a class="menu__link" href="../articulo.html">Artículos</a></li>
+                   <li class="menu__item"><a class="menu__link" href="../consulta.html">Consultas</a></li>
+                   <li class="menu__item"><a class="menu__link" href="../busqueda.html">Busquedas</a></li>
                </ul>
            </nav>
        </div>
@@ -56,12 +58,12 @@
           <select name="codigoVendedor" required>
               <?php
               require('../configuraciones/conexion.php');
-              $query = "SELECT codVendedor FROM vendedor";
+              $query = "SELECT cVendedor FROM vendedor";
               $result = mysqli_query($conn,$query) or die(mysqly_error($conn));
               if($result){ 
                   foreach($result as $fila){
                     ?>
-                    <option><?=$fila['codVendedor'];?></option>
+                    <option><?=$fila['cVendedor'];?></option>
                   <?php
                   }                 
               }

@@ -33,14 +33,10 @@
        <table class="table border-rounded">
            <thead class="thead-dark">
                <tr>
-                   <th class ="mostrar_t" scope="col">Cedula</th>
-                   <th scope="col">Codigo Vendedor</th>
-                   <th scope="col">Nombre</th>
-                   <th scope="col">Fecha de Nacimiento</th>
-                   <th scope="col">Email</th>
-                   <th scope="col">Contrasena</th>
-                   <th scope="col">Pais</th>
-                   <th scope="col">Alcance</th>
+                   <th scope="col">Categoria del articulo</th>
+                   <th scope="col">Nombre de vendedor</th>
+                   <th scope="col">Cedula del vendedor</th>
+                   <th scope="col">Email del vendedor</th>
                </tr>
            </thead>
            <tbody>
@@ -48,23 +44,24 @@
 
 require('../configuraciones/conexion.php');
 
-$query = "SELECT cVendedor,COUNT(idPropietario) as total,codVendedor,pais,alcance FROM vendedor
-            left outer join articulo on cVendedor=idpropietario group by cVendedor";
+$id=$_POST["id"];
+$query = "SELECT categoria FROM  articulo WHERE codigoArticulo = $id";
 $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
 foreach($result as $fila){
-    if($fila['total']== 0){
-        $query1 = "SELECT * FROM observador WHERE id = $fila[cVendedor]";
-        $result1 = mysqli_query($conn,$query1) or die(mysqli_error($conn));
-        foreach($result1 as $fila1){?>
+    $cat = $fila['categoria'];
+
+    $query2 = "SELECT DISTINCT codigoVendedor from articulo where categoria='$cat'";
+    $result2 = mysqli_query($conn,$query2) or die(mysqli_error($conn));
+    foreach($result2 as $fila2){
+        $ced = $fila2['codigoVendedor'];
+        $query3 = "SELECT * from observador where id=$ced";
+        $result3 = mysqli_query($conn,$query3) or die(mysqli_error($conn));
+        foreach($result3 as $fila3){?>    
             <tr>
-            <td><?=$fila1['id'];?></td>
-            <td><?=$fila['codVendedor'];?></td>
-            <td><?=$fila1['nombre'];?></td>
-            <td><?=$fila1['fecha_nacimiento'];?></td>
-            <td><?=$fila1['email'];?></td>
-            <td><?=$fila1['contrasena'];?></td>
-            <td><?=$fila['pais'];?></td>
-            <td><?=$fila['alcance'];?></td>
+            <td><?=$fila['categoria'];?></td>
+            <td><?=$fila3['nombre'];?></td>
+            <td><?=$fila3['id'];?></td>
+            <td><?=$fila3['email'];?></td>
         </tr>
           <?php  
         }

@@ -16,6 +16,8 @@
                    <li class="menu__item"><a class="menu__link" href="../index.html">Inicio</a></li>
                    <li class="menu__item"><a class="menu__link" href="../vendedor.html">Vendedores</a></li>
                    <li class="menu__item"><a class="menu__link" href="../articulo.html">Artículos</a></li>
+                   <li class="menu__item"><a class="menu__link" href="../consulta.html">Consultas</a></li>
+                   <li class="menu__item"><a class="menu__link" href="../busqueda.html">Busquedas</a></li>
                </ul>
            </nav>
        </div>
@@ -36,7 +38,7 @@
           <select name="id" required>
               <?php
               require('../configuraciones/conexion.php');
-              $query = "SELECT codigoArticulo FROM articul";
+              $query = "SELECT codigoArticulo FROM articulo";
               $result = mysqli_query($conn,$query) or die(mysqly_error($conn));
               if($result){ 
                   foreach($result as $fila){

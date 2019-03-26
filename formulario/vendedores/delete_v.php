@@ -16,7 +16,7 @@ else{
         foreach($result as $fila){
             $codVen = $fila['codVendedor'];
         }
-        $query2 = "DELETE FROM articulo WHERE codigoVendedor = '$codVen'";
+        $query2 = "DELETE FROM articulo WHERE codigoVendedor = $codVen";
         $result2 = mysqli_query($conn,$query2) or die(mysqli_error($conn));
         if($result2){
             $query4 = "DELETE FROM articulo WHERE idPropietario = $cedula";

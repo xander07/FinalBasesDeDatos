@@ -25,17 +25,32 @@
   <div class="banner">
       <img src="../img/bannerv.png" alt="" class="banner__v__img">
       <div class="contenedor">
-          <h2 class="banner__titulo"> Se ha creado el articulo correctamente</h2>
-          
+          <h2 class="banner__titulo"> Bienvenido al menú de busqueda</h2>
+          <p class="banner__txt">Ingresa el ID de un articulo para saber su categoria y que vendedores venden esta categoria.</p>
       </div>
   </div>
-  <footer class="footer">
-    <div class="social">
-        <a href="" class="icon-fb"></a>
-        <a href="" class="icon-wpp"></a>
-        <a href="" class="icon-correo"></a>
-    </div>
-    <p class="copy">&copy;Subastas Los Primiparceros 2019 - Todos los derechos reservados</p>
-</footer>
-<script src="../js/menu.js"></script>
+
+  <main class="main">
+    <div class="formulario">
+      <form action="busqueda2.php" class="form-group" method="post">
+      <div class="form-group">
+          <label for="id">Numero de identificacion</label>
+          <input type="text" name="id" id="id" class="form-control" required>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Buscar">
+          <a href="busqueda1.html" class="btn btn-success">Reiniciar</a>
+        </div>
+</form>
+</div>
+</main>
+<footer class="footer">
+       <div class="social">
+           <a href="" class="icon-fb"></a>
+           <a href="" class="icon-wpp"></a>
+           <a href="" class="icon-correo"></a>
+       </div>
+       <p class="copy">&copy;Subastas Los Primiparceros 2019 - Todos los derechos reservados</p>
+   </footer>
+   <script src="../js/menu.js"></script>
+</body>
 </html>

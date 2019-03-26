@@ -4,6 +4,12 @@
 require('../configuraciones/conexion.php');
 
 $cedula = $_POST["id"];
+$cumple = new DateTime($_POST["fNacimiento"]);
+$hoy = new Datetime();
+$annos = $hoy ->diff($cumple);
+
+
+
 
 //query
 if($cedula<0){
@@ -11,21 +17,18 @@ if($cedula<0){
 }
 
 else{
+    if(($annos ->y)< 18 ){
+        echo "Debes ser mayor de edad";
+    }
+    else{
 	$query="INSERT INTO `observador`(`id`,`nombre`, `fecha_nacimiento`, `email`,`contrasena`,`tipo`)
  	VALUES ('$_POST[id]','$_POST[name]',date('$_POST[fNacimiento]'),'$_POST[email]','$_POST[password]','vendedor')";
 	$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
  	if($result){
-        $query1 = "SELECT count(*) as total FROM vendedor";
-        $result1 = mysqli_query($conn,$query1) or die(mysqli_error($conn));
-        if($result1){
-            foreach ($result1 as $fila){
-                $codVen="V".$fila['total'];
-            }
-        }
     
-        $query="INSERT INTO `vendedor`(`cVendedor`,`codVendedor`,`pais`,`alcance`)   
-        VALUES('$_POST[id]','$codVen','$_POST[pais]','$_POST[alcance]')";
+        $query="INSERT INTO `vendedor`(`cVendedor`,`pais`,`alcance`)   
+        VALUES('$_POST[id]','$_POST[pais]','$_POST[alcance]')";
         $result=mysqli_query($conn,$query) or die(mysqli_error($conn));
         if($result){
             header ("Location: vendedorc.html");
@@ -38,7 +41,8 @@ else{
          
  	}else{
         header("Location: error.html");
- 	}
+     }
+    }
 
 
 }

@@ -33,14 +33,9 @@
        <table class="table border-rounded">
            <thead class="thead-dark">
                <tr>
-                   <th class ="mostrar_t" scope="col">Cedula</th>
-                   <th scope="col">Codigo Vendedor</th>
+                   <th scope="col">Cedula</th>
                    <th scope="col">Nombre</th>
-                   <th scope="col">Fecha de Nacimiento</th>
-                   <th scope="col">Email</th>
-                   <th scope="col">Contrasena</th>
-                   <th scope="col">Pais</th>
-                   <th scope="col">Alcance</th>
+                   <th scope="col">Número de articulos</th>
                </tr>
            </thead>
            <tbody>
@@ -48,28 +43,22 @@
 
 require('../configuraciones/conexion.php');
 
-$query = "SELECT cVendedor,COUNT(idPropietario) as total,codVendedor,pais,alcance FROM vendedor
-            left outer join articulo on cVendedor=idpropietario group by cVendedor";
+$query = "SELECT cVendedor, COUNT(idPropietario) AS total FROM vendedor  
+    left outer join articulo on cVendedor=idPropietario
+group by cVendedor;";
 $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
 foreach($result as $fila){
-    if($fila['total']== 0){
         $query1 = "SELECT * FROM observador WHERE id = $fila[cVendedor]";
         $result1 = mysqli_query($conn,$query1) or die(mysqli_error($conn));
         foreach($result1 as $fila1){?>
             <tr>
             <td><?=$fila1['id'];?></td>
-            <td><?=$fila['codVendedor'];?></td>
             <td><?=$fila1['nombre'];?></td>
-            <td><?=$fila1['fecha_nacimiento'];?></td>
-            <td><?=$fila1['email'];?></td>
-            <td><?=$fila1['contrasena'];?></td>
-            <td><?=$fila['pais'];?></td>
-            <td><?=$fila['alcance'];?></td>
+            <td><?=$fila['total'];?></td>
         </tr>
           <?php  
         }
     }
-}
 ?>
            </tbody>
        </table>

@@ -5,13 +5,13 @@
 			contrasena VARCHAR(20) NOT NULL, 
 			tipo VARCHAR(11) NOT NULL)ENGINE = InnoDB;
 
-CREATE TABLE vendedor (cVendedor INT PRIMARY KEY,
-			codVendedor VARCHAR(11) NOT NULL UNIQUE,
+CREATE TABLE vendedor (cVendedor INT  PRIMARY KEY,
+			codVendedor INT AUTO_INCREMENT NOT NULL UNIQUE,
 			pais VARCHAR(15) NOT NULL,
 			alcance VARCHAR(15) NOT NULL)ENGINE = InnoDB;
 
-CREATE TABLE comprador (cComprador INT PRIMARY KEY,
-			codComprador VARCHAR(11) NOT NULL UNIQUE);
+CREATE TABLE comprador (cComprador INT  PRIMARY KEY,
+			codComprador INT AUTO_INCREMENT NOT NULL UNIQUE);
 
 CREATE TABLE moderador (codigoModerador VARCHAR(15) PRIMARY KEY,
 			nombre VARCHAR(30) NOT NULL)ENGINE = InnoDB;
