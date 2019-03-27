@@ -13,7 +13,7 @@ CREATE TABLE vendedor (cVendedor INT  PRIMARY KEY,
 CREATE TABLE comprador (cComprador INT  PRIMARY KEY,
 			codComprador INT AUTO_INCREMENT NOT NULL UNIQUE);
 
-CREATE TABLE moderador (codigoModerador VARCHAR(15) PRIMARY KEY,
+CREATE TABLE moderador (codModerador VARCHAR(15) PRIMARY KEY,
 			nombre VARCHAR(30) NOT NULL)ENGINE = InnoDB;
 
 CREATE TABLE articulo (codigoArticulo INT AUTO_INCREMENT PRIMARY KEY,
@@ -32,7 +32,7 @@ CREATE TABLE puja (idPuja VARCHAR(15) PRIMARY KEY,
 		   tipoPujador VARCHAR(15) NOT NULL,
 		   codigoSubasta VARCHAR(15) NOT NULL)ENGINE = InnoDB;
 
-CREATE TABLE subasta (codigoSubasta VARCHAR(15) PRIMARY KEY, 
+CREATE TABLE subasta (codSubasta VARCHAR(15) PRIMARY KEY, 
 		      valorInicial INT(10) NOT NULL,
 		      pujaMasAlta VARCHAR(15),
 		      estado VARCHAR(10) NOT NULL,
