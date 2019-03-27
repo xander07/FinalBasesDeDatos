@@ -49,13 +49,14 @@ CREATE TABLE visita (idVisita VARCHAR(15) PRIMARY KEY,
 CREATE TABLE reputacion (codigoVendedor INT PRIMARY KEY,
 			 puntuacion FLOAT(2) NOT NULL)ENGINE = InnoDB;
 
-CREATE TABLE comentarioArticulo (CodComentario VARCHAR(15) PRIMARY KEY,
+CREATE TABLE comentarioArticulo (codComentario VARCHAR(15) PRIMARY KEY,
 				  descripcion TEXT NOT NULL,
 				  fecha DATE NOT NULL,
 				  hechoPor INT NOT NULL,
+				  calificacion FLOAT(2) NOT NULL,
 				  articuloComentado INT NOT NULL)ENGINE = InnoDB;
 
-CREATE TABLE comentarioReputacion (Codcomentario VARCHAR(11) PRIMARY KEY,
+CREATE TABLE comentarioReputacion (codComentario VARCHAR(11) PRIMARY KEY,
 				    reputacionCalificada INT,
 				    descripcion TEXT NOT NULL,
 				    fecha DATE NOT NULL,
